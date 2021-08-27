@@ -1,17 +1,19 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 public class UiManager : MonoBehaviour
 {
-    public GameObject PausePanel; 
-    public Transform MpBar;
+    public GameObject PausePanel;
     public TextMeshProUGUI SurvivalTimeText, Level, KillCount;
+    public Image MpBar, HpBar;
+    public Slider HpBarSlider;
+    public Gradient HpBarGradient;
 
     private void LateUpdate()
     {
         int time = Mathf.FloorToInt(Time.timeSinceLevelLoad);
-        Vector3 mpBarSize = MpBar.localScale;
 
         SurvivalTimeText.SetText((time / 60).ToString("d2") + ":" + (time % 60).ToString("d2"));
     }
@@ -33,5 +35,17 @@ public class UiManager : MonoBehaviour
     public void GiveUp()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void UpdateMpBar(int currentMp, int mpForLevel)
+    {
+        MpBar.fillAmount = (float)(currentMp % mpForLevel) / mpForLevel;
+    }
+
+    public void UpdateHpBar(int hp, int hpMax)
+    {
+        HpBarSlider.maxValue = hpMax;
+        HpBarSlider.value = hp;
+        HpBar.color = HpBarGradient.Evaluate(HpBarSlider.normalizedValue);
     }
 }
