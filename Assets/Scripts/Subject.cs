@@ -2,11 +2,20 @@ using UnityEngine;
 
 public class Subject : MonoBehaviour
 {
+    public static int KillCount, Level = 1;
+
     public Joystick joystick;
+    public UiManager UiManager;
     public float speed, controlInsensitivity;
 
-    int mp, hp, hpMax, points;
-    double level;
+    int _mp, points, _hp = 100, _hpMax = 100;
+    private int _mpForLevel = 5;
+
+    private void Start()
+    {
+        UiManager.UpdateMpBar(_mp, _mpForLevel);
+        UiManager.UpdateHpBar(_hp, _hpMax);
+    }
 
     void Update() {
         float horizontalMove, verticalMove;
