@@ -4,9 +4,9 @@ public class Subject : MonoBehaviour
 {
     public Joystick joystick;
     public float speed, controlInsensitivity;
+    public static int KillCount, Level = 1;
 
     int mp, hp, hpMax, points;
-    double level;
 
     void Update() {
         float horizontalMove, verticalMove;
