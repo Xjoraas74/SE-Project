@@ -38,4 +38,17 @@ public class Subject : MonoBehaviour
 
         transform.position += new Vector3(horizontalMove * Time.deltaTime, verticalMove * Time.deltaTime, 0);
     }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        _hp -= other.GetComponent<Enemy>().GiveDamage();
+        if (_hp > 0)
+        {
+            UiManager.UpdateHpBar(_hp, _hpMax);
+        }
+        else
+        {
+            UiManager.GiveUp();
+        }
+    }
 }
