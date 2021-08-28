@@ -16,31 +16,36 @@ public abstract class Generator : MonoBehaviour
         float screenHalfHeight = Camera.orthographicSize, screenHalfWidth = screenHalfHeight * Camera.aspect;
 
         _screenHalfDiag = Mathf.Sqrt(screenHalfWidth * screenHalfWidth + screenHalfHeight * screenHalfHeight);
-        StartCoroutine(Generate());
+        StartCoroutine(GenerateCoroutine());
     }
 
-    private IEnumerator Generate()
+    private IEnumerator GenerateCoroutine()
     {
         yield return new WaitForSeconds(_initialDelay);
 
         while (true)
         {
-            Vector3 randomPointWithinScreen = Camera.ScreenToWorldPoint(new Vector3(
-                Random.Range(0, Camera.pixelWidth + 1),
-                Random.Range(0, Camera.pixelHeight + 1),
-                -Camera.transform.position.z
-            ));
-            Vector3 centerPointOnScreen = Camera.ScreenToWorldPoint(new Vector3(
-                Camera.pixelWidth / 2,
-                Camera.pixelHeight / 2,
-                -Camera.transform.position.z
-            ));
-            Vector3 distanceFromCenter = randomPointWithinScreen - centerPointOnScreen;
-            distanceFromCenter *= (_screenHalfDiag + 1) / distanceFromCenter.magnitude;
-            Vector3 generatePosition = centerPointOnScreen + distanceFromCenter;
-
-            Instantiate(Generateable, generatePosition, Quaternion.identity);
+            Generate();
             yield return new WaitForSeconds(_usualDelay);
         }
+    }
+
+    protected virtual Generateable Generate()
+    {
+        Vector3 randomPointWithinScreen = Camera.ScreenToWorldPoint(new Vector3(
+            Random.Range(0, Camera.pixelWidth + 1),
+            Random.Range(0, Camera.pixelHeight + 1),
+            -Camera.transform.position.z
+        ));
+        Vector3 centerPointOnScreen = Camera.ScreenToWorldPoint(new Vector3(
+            Camera.pixelWidth / 2,
+            Camera.pixelHeight / 2,
+            -Camera.transform.position.z
+        ));
+        Vector3 distanceFromCenter = randomPointWithinScreen - centerPointOnScreen;
+        distanceFromCenter *= (_screenHalfDiag + 1) / distanceFromCenter.magnitude;
+        Vector3 generatePosition = centerPointOnScreen + distanceFromCenter;
+
+        return Instantiate(Generateable, generatePosition, Quaternion.identity);
     }
 }
