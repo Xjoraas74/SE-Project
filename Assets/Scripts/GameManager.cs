@@ -3,7 +3,7 @@ using Pathfinding;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject Enemy, Subject;
+    public GameObject Enemy, Subject, MagicBullet;
     public Camera Camera;
 
     private float _gridGraphUpdateInterval = 10f;
@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
         enemyGenerator.Camera = Camera;
         enemyGenerator.Subject = Subject;
         InvokeRepeating("RecalculatePathGraphs", _gridGraphUpdateInterval, _gridGraphUpdateInterval);
+        MagicBulletsShooter.MagicBulletObject = MagicBullet;
     }
 
     private void RecalculatePathGraphs()

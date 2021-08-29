@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using Pathfinding;
 
 public class Enemy : Generateable
 {
@@ -7,6 +8,17 @@ public class Enemy : Generateable
 
     private const int _damage = 7;
     private bool canGiveDamage = true;
+    private int _hp = 10, _mpDrop = 1;
+
+    private void OnBecameVisible()
+    {
+        Magic.EnemiesOnScreen.Add(this);
+    }
+
+    private void OnBecameInvisible()
+    {
+        Magic.EnemiesOnScreen.Remove(this);
+    }
 
     public int GiveDamage()
     {
@@ -19,6 +31,14 @@ public class Enemy : Generateable
         else
         {
             return 0;
+        }
+    }
+
+    public void GetDamage(int damage) {
+        _hp -= damage;
+        if (_hp <= 0) {
+            GetComponent<AIDestinationSetter>().target.gameObject.GetComponent<Subject>().GetMpDrop(_mpDrop);
+            Destroy(gameObject);
         }
     }
 

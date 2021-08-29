@@ -15,6 +15,8 @@ public class Subject : MonoBehaviour
     {
         UiManager.UpdateMpBar(_mp, _mpForLevel);
         UiManager.UpdateHpBar(_hp, _hpMax);
+
+        gameObject.AddComponent<MagicBulletsShooter>();
     }
 
     void Update() {
@@ -41,14 +43,21 @@ public class Subject : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        _hp -= other.GetComponent<Enemy>().GiveDamage();
-        if (_hp > 0)
-        {
-            UiManager.UpdateHpBar(_hp, _hpMax);
+        if (other.TryGetComponent(out Enemy enemy)) {
+            _hp -= enemy.GiveDamage();
+            if (_hp > 0)
+            {
+                UiManager.UpdateHpBar(_hp, _hpMax);
+            }
+            else
+            {
+                UiManager.GiveUp();
+            }
         }
-        else
-        {
-            UiManager.GiveUp();
-        }
+    }
+
+    public void GetMpDrop(int mpDrop) {
+        _mp += mpDrop;
+        UiManager.UpdateMpBar(_mp, _mpForLevel);
     }
 }
