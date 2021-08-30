@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Magic : Ability
+public abstract class Magic : Ability
 {
     public static List<Enemy> EnemiesOnScreen = new List<Enemy>();
 
@@ -37,5 +37,7 @@ public class Magic : Ability
         }
     }
 
-    protected virtual void Activate() {}
+
+
+    protected abstract void Activate();
 }
