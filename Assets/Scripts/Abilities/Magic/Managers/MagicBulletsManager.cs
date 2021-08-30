@@ -1,10 +1,12 @@
 using UnityEngine;
 
-public class MagicBulletsShooter : Magic
+public class MagicBulletsManager : MagicManager
 {
     public static GameObject MagicBulletObject;
 
     protected override float _cooldown { get => 1f; }
+
+    protected override bool CanBeUsed() => EnemiesOnScreen.Count > 0;
 
     protected override void Activate() {
         // get the closest enemy

@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: a9525defa5fa9892688382aca59f06eb
+guid: 1eeaf8f31a9749a378c2de7abe623817
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - MagicBullet: {instanceID: 0}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

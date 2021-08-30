@@ -4,6 +4,7 @@ public class Subject : MonoBehaviour
 {
     public static int KillCount, Level = 1;
 
+    public static Shield Shield;
     public Joystick joystick;
     public UiManager UiManager;
     public float speed, controlInsensitivity;
@@ -16,7 +17,8 @@ public class Subject : MonoBehaviour
         UiManager.UpdateMpBar(_mp, _mpForLevel);
         UiManager.UpdateHpBar(_hp, _hpMax);
 
-        gameObject.AddComponent<MagicBulletsShooter>();
+        gameObject.AddComponent<MagicBulletsManager>();
+        gameObject.AddComponent<ShieldManager>();
     }
 
     void Update() {
@@ -44,7 +46,7 @@ public class Subject : MonoBehaviour
     private void OnTriggerStay2D(Collider2D other)
     {
         if (other.TryGetComponent(out Enemy enemy)) {
-            _hp -= enemy.GiveDamage();
+            ApplyDamage(enemy.GiveDamage());
             if (_hp > 0)
             {
                 UiManager.UpdateHpBar(_hp, _hpMax);
@@ -53,6 +55,16 @@ public class Subject : MonoBehaviour
             {
                 UiManager.GiveUp();
             }
+        }
+    }
+
+    private void ApplyDamage(int damage) {
+        if (Shield != null) {
+            Shield.Protect();
+            return;
+        }
+        else {
+            _hp -= damage;
         }
     }
 

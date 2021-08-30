@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Magic : Ability
+public abstract class MagicManager : Ability
 {
     public static List<Enemy> EnemiesOnScreen = new List<Enemy>();
 
     // the class diagram says it's the only universal field
     protected virtual float _cooldown { get; }
+    
     private bool _didCoolDown = true;
 
     private int _damage;
@@ -20,7 +21,7 @@ public abstract class Magic : Ability
 
     private IEnumerator Use() {
         while (true) {
-            if (EnemiesOnScreen.Count > 0) { // if the magic can be used
+            if (CanBeUsed()) {
                 if (_didCoolDown) {
                     _didCoolDown = false;
                     Activate();
@@ -37,7 +38,7 @@ public abstract class Magic : Ability
         }
     }
 
-
+    protected abstract bool CanBeUsed();
 
     protected abstract void Activate();
 }

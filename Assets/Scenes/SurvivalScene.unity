@@ -824,6 +824,7 @@ MonoBehaviour:
   Enemy: {fileID: 798622092190410354, guid: ed22f45cd9582aa73a194a4fe22c8cd7, type: 3}
   Subject: {fileID: 941141739}
   MagicBullet: {fileID: 4239688481479730508, guid: 19e1e6ae0ff14fbc28026ef06ea73e73, type: 3}
+  Shield: {fileID: 7850005911024746545, guid: 90bc89cfd43c4d1f4995eebc32c64143, type: 3}
   Camera: {fileID: 519420031}
 --- !u!4 &809631042
 Transform:
@@ -2167,7 +2168,6 @@ GameObject:
   - component: {fileID: 1763720280}
   - component: {fileID: 1763720279}
   - component: {fileID: 1763720278}
-  - component: {fileID: 1763720277}
   m_Layer: 5
   m_Name: HpCanvas
   m_TagString: Untagged
@@ -2183,7 +2183,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1763720275}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1267625358}
@@ -2195,54 +2195,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -0.4}
   m_SizeDelta: {x: 0.6, y: 0.1}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1763720277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1763720275}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6934afcbbd9164dd5ac3bccc45c40c12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PausePanel: {fileID: 0}
-  SurvivalTimeText: {fileID: 0}
-  Level: {fileID: 0}
-  KillCount: {fileID: 0}
-  MpBar: {fileID: 0}
-  HpBar: {fileID: 1520206741}
-  HpBarSlider: {fileID: 1267625359}
-  HpBarGradient:
-    serializedVersion: 2
-    key0: {r: 1, g: 0, b: 0, a: 1}
-    key1: {r: 1, g: 0.9214484, b: 0, a: 1}
-    key2: {r: 0.09710693, g: 1, b: 0, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 32768
-    ctime2: 65535
-    ctime3: 0
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_NumColorKeys: 3
-    m_NumAlphaKeys: 2
 --- !u!114 &1763720278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2301,8 +2253,8 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -1621280339
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!1 &2007739935
 GameObject:

@@ -12,12 +12,12 @@ public class Enemy : Generateable
 
     private void OnBecameVisible()
     {
-        Magic.EnemiesOnScreen.Add(this);
+        MagicManager.EnemiesOnScreen.Add(this);
     }
 
     private void OnBecameInvisible()
     {
-        Magic.EnemiesOnScreen.Remove(this);
+        MagicManager.EnemiesOnScreen.Remove(this);
     }
 
     public int GiveDamage()
