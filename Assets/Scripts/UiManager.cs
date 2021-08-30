@@ -42,7 +42,7 @@ public class UiManager : MonoBehaviour
         MpBar.fillAmount = (float)(currentMp % mpForLevel) / mpForLevel;
     }
 
-    public void UpdateHpBar(int hp, int hpMax)
+    public void UpdateHpBar(float hp, float hpMax)
     {
         HpBarSlider.maxValue = hpMax;
         HpBarSlider.value = hp;

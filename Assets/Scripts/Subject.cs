@@ -7,15 +7,18 @@ public class Subject : MonoBehaviour
     public static Shield Shield;
     public Joystick joystick;
     public UiManager UiManager;
-    public float speed, controlInsensitivity;
+    public float Speed, controlInsensitivity;
+    public float HpMax = 100f;
 
-    int _mp, points, _hp = 100, _hpMax = 100;
+    private float _hp = 100;
+
+    int _mp, points;
     private int _mpForLevel = 5;
 
     private void Start()
     {
         UiManager.UpdateMpBar(_mp, _mpForLevel);
-        UiManager.UpdateHpBar(_hp, _hpMax);
+        RecalculateHpBar();
 
         gameObject.AddComponent<MagicBulletsManager>();
         gameObject.AddComponent<ShieldManager>();
@@ -25,17 +28,17 @@ public class Subject : MonoBehaviour
         float horizontalMove, verticalMove;
 
         if (joystick.Horizontal >= controlInsensitivity) {
-            horizontalMove = speed;
+            horizontalMove = Speed;
         } else if (joystick.Horizontal <= -controlInsensitivity) {
-            horizontalMove = -speed;
+            horizontalMove = -Speed;
         } else {
             horizontalMove = 0;
         }
 
         if (joystick.Vertical >= controlInsensitivity) {
-           verticalMove = speed;
+           verticalMove = Speed;
         } else if (joystick.Vertical <= -controlInsensitivity) {
-            verticalMove = -speed;
+            verticalMove = -Speed;
         } else {
             verticalMove = 0;
         }
@@ -49,7 +52,7 @@ public class Subject : MonoBehaviour
             ApplyDamage(enemy.GiveDamage());
             if (_hp > 0)
             {
-                UiManager.UpdateHpBar(_hp, _hpMax);
+                RecalculateHpBar();
             }
             else
             {
@@ -66,6 +69,10 @@ public class Subject : MonoBehaviour
         else {
             _hp -= damage;
         }
+    }
+
+    public void RecalculateHpBar() {
+        UiManager.UpdateHpBar(_hp, HpMax);
     }
 
     public void GetMpDrop(int mpDrop) {
