@@ -5,7 +5,7 @@ public class Subject : MonoBehaviour
 {
     public static Shield Shield;
     public Joystick joystick;
-    public UiManager UiManager;
+    public GameUiManager UiManager;
     public float Speed, controlInsensitivity;
     public float HpMax = 100f;
     public int KillCount, Level = 1;

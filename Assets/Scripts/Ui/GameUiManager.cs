@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using System.Linq;
 using System.Collections.Generic;
 
-public class UiManager : MonoBehaviour
+public class GameUiManager : MonoBehaviour
 {
     public GameObject PausePanel;
     public List<GameObject> AbilityOptions;
