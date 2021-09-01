@@ -5,7 +5,12 @@ public abstract class Skill : Ability
     protected abstract float _coefficient { get; }
     protected abstract int _addendum { get; }
 
-    protected void Start() {
+    public override void Upgrade() {
+        base.Upgrade();
+        Apply();
+    }
+
+    protected void Awake() {
         _subject = gameObject.GetComponent<Subject>();
         _originalValue = GetTheOriginalValue();
     }
@@ -15,6 +20,6 @@ public abstract class Skill : Ability
     public abstract void Apply();
 
     protected float GetRecalculatedValue() {
-        return _originalValue * _coefficient + _addendum;
+        return _originalValue * ((_coefficient * Level) + 1) + _addendum;
     }
 }

@@ -2,7 +2,11 @@ using System.Collections.Generic;
 
 public class Vitality : Skill
 {
-    protected override float _coefficient => 1.5f;
+    public override string Name { get => "Vitality"; }
+    
+    public override string Description { get => "Max HP + 50%"; }
+
+    protected override float _coefficient => 0.5f;
 
     protected override int _addendum => 0;
 

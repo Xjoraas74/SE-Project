@@ -1,6 +1,10 @@
 public class Haste : Skill
 {
-    protected override float _coefficient => 1.2f;
+    public override string Name { get => "Haste"; }
+
+    public override string Description { get => "Movement speed + 20%"; }
+
+    protected override float _coefficient => 0.2f;
 
     protected override int _addendum => 0;
 

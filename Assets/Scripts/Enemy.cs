@@ -7,8 +7,9 @@ public class Enemy : Generateable
     public float Cooldown = 0.36f;
 
     private const int _damage = 7;
+    private const float _mpDrop = 1f;
     private bool canGiveDamage = true;
-    private int _hp = 10, _mpDrop = 1;
+    private int _hp = 10;
 
     private void OnBecameVisible()
     {
