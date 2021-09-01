@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
 
-public class UiManager : MonoBehaviour
+public class GameUiManager : MonoBehaviour
 {
     public GameObject PausePanel;
     public TextMeshProUGUI SurvivalTimeText, Level, KillCount;
