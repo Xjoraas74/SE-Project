@@ -478,9 +478,10 @@ GameObject:
   - component: {fileID: 319046377}
   - component: {fileID: 319046376}
   - component: {fileID: 319046379}
+  - component: {fileID: 319046380}
   m_Layer: 5
-  m_Name: Option1
-  m_TagString: Untagged
+  m_Name: Option
+  m_TagString: ClassOption
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -612,8 +613,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MenuUiManager: {fileID: 1932376961}
-  Name: Attacker
-  Description: +1 magic bullet per charge
+--- !u!114 &319046380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 319046374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d7705cdc2d147c4ca24d55d035e2281, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &344929628
 GameObject:
   m_ObjectHideFlags: 0
@@ -1544,9 +1555,10 @@ GameObject:
   - component: {fileID: 1500669683}
   - component: {fileID: 1500669682}
   - component: {fileID: 1500669685}
+  - component: {fileID: 1500669686}
   m_Layer: 5
-  m_Name: Option2
-  m_TagString: Untagged
+  m_Name: Option
+  m_TagString: ClassOption
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1678,8 +1690,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MenuUiManager: {fileID: 1932376961}
-  Name: Tank
-  Description: +1 shield charge
+--- !u!114 &1500669686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500669680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3a7bb716b393e409956c67765ba26d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1680994350
 GameObject:
   m_ObjectHideFlags: 0
@@ -2196,8 +2218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ClassChoicePanel: {fileID: 1405941685}
-  ClassChoiceOption1: {fileID: 319046374}
-  ClassChoiceOption2: {fileID: 1500669680}
   SelectButton: {fileID: 601702456}
   ClassName: {fileID: 1680994352}
   ClassDescription: {fileID: 467786514}
+  _classes: []
