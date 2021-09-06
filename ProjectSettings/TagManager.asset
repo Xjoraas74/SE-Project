@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - ClassOption
   layers:
   - Default
   - TransparentFX
@@ -43,6 +44,9 @@ TagManager:
     locked: 0
   - name: Enemies
     uniqueID: 15279113
+    locked: 0
+  - name: Magic
+    uniqueID: 2588369043
     locked: 0
   - name: Player
     uniqueID: 2673686957
