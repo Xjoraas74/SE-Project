@@ -17,6 +17,11 @@ public class Subject : MonoBehaviour
     private const float _mpForTheFirstLevel = 5f, _mpDiffBetweenAdjacentLevels = 1f;
 
     private void Awake() {
+        SetAbilities();
+        ApplySubjectClass();
+    }
+
+    private void SetAbilities() {
         var abilitiesTypes = typeof(Ability).Assembly.GetTypes().Where(type => type.IsSubclassOf(typeof(Ability)) && !type.IsAbstract);
         foreach(var abilityType in abilitiesTypes) {
             var ability = gameObject.AddComponent(abilityType) as Ability;
@@ -24,6 +29,15 @@ public class Subject : MonoBehaviour
                 ability.enabled = false;
             }
         }
+    }
+
+    private void ApplySubjectClass() {
+        (var boostedAbilitiesTypes, var sprite) = 
+            GameObject.FindWithTag("ClassOption").GetComponent<ClassChoiceOptionManager>().GetSubjectClassData();
+        foreach (var boostedAbilityType in boostedAbilitiesTypes) {
+            (GetComponent(boostedAbilityType) as Ability).Upgrade();
+        }
+        GetComponent<SpriteRenderer>().sprite = sprite;
     }
 
     private void Start()
