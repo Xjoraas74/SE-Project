@@ -10,7 +10,7 @@ public class Subject : MonoBehaviour
     public float HpMax = 100f;
     public int KillCount, Level = 1;
 
-    private float _hp = 100, _mp;
+    private float _hp = 100f, _mp;
 
     int points;
 
@@ -66,6 +66,16 @@ public class Subject : MonoBehaviour
         }
 
         transform.position += new Vector3(horizontalMove * Time.deltaTime, verticalMove * Time.deltaTime, 0);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.TryGetComponent(out Mp mp)) {
+            GetMpDrop(mp.Collect());
+        }
+        else if (other.TryGetComponent(out Hp hp)) {
+            _hp = Mathf.Min(_hp + hp.Collect(), HpMax);
+            RecalculateHpBar();
+        }
     }
 
     private void OnTriggerStay2D(Collider2D other)

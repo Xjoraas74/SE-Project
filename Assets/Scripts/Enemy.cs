@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using Pathfinding;
 
-public class Enemy : Generateable
+public class Enemy : MonoBehaviour
 {
     public float Cooldown = 0.36f;
 
