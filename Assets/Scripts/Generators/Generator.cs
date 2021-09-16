@@ -3,17 +3,23 @@ using System.Collections;
 
 public abstract class Generator : MonoBehaviour
 {
-    public Generateable Generateable;
-    public Camera Camera;
+    public GameObject Generateable;
 
     protected abstract float _initialDelay { get; }
     protected abstract float _usualDelay { get; }
 
+    private static Camera _camera;
     private float _screenHalfDiag;
+
+    private void Awake() {
+        if (_camera == null) {
+            _camera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
+        }
+    }
 
     private void Start()
     {
-        float screenHalfHeight = Camera.orthographicSize, screenHalfWidth = screenHalfHeight * Camera.aspect;
+        float screenHalfHeight = _camera.orthographicSize, screenHalfWidth = screenHalfHeight * _camera.aspect;
 
         _screenHalfDiag = Mathf.Sqrt(screenHalfWidth * screenHalfWidth + screenHalfHeight * screenHalfHeight);
         StartCoroutine(GenerateCoroutine());
@@ -30,17 +36,17 @@ public abstract class Generator : MonoBehaviour
         }
     }
 
-    protected virtual Generateable Generate()
+    protected virtual GameObject Generate()
     {
-        Vector3 randomPointWithinScreen = Camera.ScreenToWorldPoint(new Vector3(
-            Random.Range(0, Camera.pixelWidth + 1),
-            Random.Range(0, Camera.pixelHeight + 1),
-            -Camera.transform.position.z
+        Vector3 randomPointWithinScreen = _camera.ScreenToWorldPoint(new Vector3(
+            Random.Range(0, _camera.pixelWidth + 1),
+            Random.Range(0, _camera.pixelHeight + 1),
+            -_camera.transform.position.z
         ));
-        Vector3 centerPointOnScreen = Camera.ScreenToWorldPoint(new Vector3(
-            Camera.pixelWidth / 2,
-            Camera.pixelHeight / 2,
-            -Camera.transform.position.z
+        Vector3 centerPointOnScreen = _camera.ScreenToWorldPoint(new Vector3(
+            _camera.pixelWidth / 2,
+            _camera.pixelHeight / 2,
+            -_camera.transform.position.z
         ));
         Vector3 distanceFromCenter = randomPointWithinScreen - centerPointOnScreen;
         distanceFromCenter *= (_screenHalfDiag + 1) / distanceFromCenter.magnitude;
